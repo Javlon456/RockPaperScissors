@@ -1,0 +1,127 @@
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    </head>
+    <style>
+        .column{
+            opacity:1;
+            display:block
+        }
+        .flex-box{
+            display:flex;
+            align-items: center;
+            justify-content: center;
+        }
+        button{
+            width:100px;
+        }
+        body {
+            background-color:teal;
+        }
+    </style>
+    <body>
+        <div class=column style=text-align:center>
+        <h3>Human Score:<span id="humanScore">0</span></h3>
+        <h3>Bot Score:<span id="botScore">0</span></h3>
+        <h3>Tie:<span id="tie">0</span></h3>
+        <h4>Test your luck!</h4>
+    </div>
+        <!-- <button id="rock" onclick="choice('rock')">Click To Start Game!</button><br/><br/> -->
+        <div class="flex-box">
+            <div class=column>
+            <button id="rock" onclick="choice('rock')" style="background-color:lightgreen">rock</button>
+            <br/><img src="Rock.jpg" about="" style=width:100px;height:100px>
+            </div>
+            <div class=column>
+            <button id="paper" onclick="choice('paper')" style="background-color:lightblue">paper</button>
+            <br/><img src="Paper.jpg" about="" style=width:100px;height:100px>
+            </div>
+            <div class=column>
+            <button id="scissors" onclick="choice('scissors')" style="background-color: lightcoral">scissors</button>
+            <br/><img src="Scissors.jpg" about="" style=width:100px;height:100px>
+            </div>
+        </div>
+        
+    </body>
+    <script>
+    //Add an empty paragraph that updates when a winner is decided.
+        var humanScore = 0;
+        var botScore = 0;
+        var tie = 0;
+        var rock = document.getElementById("rock");
+        var paper = document.getElementById("paper");
+        var scissors = document.getElementById("scissors");
+        var humanChoice;
+
+        const choices = ["rock","paper","scissors"];
+        var botChoice = choices[Math.floor(Math.random()* 3)];
+
+        function choice(option)
+        {
+            if(option === "rock")
+            {
+                $("#botScore").text(botScore)
+                $("#botScore").text(botScore)
+                $("#tie").text(tie)
+                humanChoice = "rock"
+                botChoice = choices[Math.floor(Math.random()* 3)]
+                humanwinScenario();
+                botwinScenario();
+                tiewinScenario();
+            }
+            else if(option === "paper")
+            {
+                $("#humanScore").text(humanScore)
+                $("#botScore").text(botScore)
+                $("#tie").text(tie)
+                humanChoice = "paper"
+                botChoice = choices[Math.floor(Math.random()* 3)]
+                humanwinScenario();
+                botwinScenario();
+                tiewinScenario();
+            }
+            else if(option === "scissors")
+            {
+                $("#humanScore").text(humanScore)
+                $("#botScore").text(botScore)
+                $("#tie").text(tie)
+                humanChoice = "scissors"
+                botChoice = choices[Math.floor(Math.random()* 3)]
+                humanwinScenario();
+                botwinScenario();
+                tiewinScenario();
+            }
+        }
+
+        function tiewinScenario(){
+            if(humanChoice==="rock" && botChoice==="rock"
+            || humanChoice==="paper" && botChoice==="paper"
+            || humanChoice==="scissors" && botChoice==="scissors"){
+                tie++
+                $("#tie").text(tie)
+                console.log("T")
+                alert("Tie")
+            }
+        }
+        function humanwinScenario(){
+            if(humanChoice==="rock" && botChoice==="scissors"
+            || humanChoice==="paper" && botChoice==="rock"
+            || humanChoice==="scissors" && botChoice==="paper"){
+                humanScore++
+                $("#humanScore").text(humanScore)
+                console.log("W")
+                alert("You Win")
+            } 
+        }
+        function botwinScenario(){
+            if(humanChoice==="rock" && botChoice==="paper"
+            || humanChoice==="paper" && botChoice==="scissors"
+            || humanChoice==="scissors" && botChoice==="rock"){
+                botScore++
+                $("#botScore").text(botScore)
+                console.log("L")
+                alert("You Lose")
+            }
+        } 
+    </script>
+</html>
